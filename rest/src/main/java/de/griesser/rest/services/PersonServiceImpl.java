@@ -3,48 +3,43 @@ package de.griesser.rest.services;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
-import de.griesser.rest.exceptions.PersonNotFound;
 import de.griesser.rest.resources.PersonResource;
 
 public class PersonServiceImpl implements PersonService {
-	
-	private Map<Integer, PersonResource> persons;
-	
+
+	private Map<String, PersonResource> persons;
+
 	public PersonServiceImpl() {
-		persons = new HashMap<Integer, PersonResource>();
+		persons = new HashMap<String, PersonResource>();
 	}
 
 	public Collection<PersonResource> getAll() {
 		return persons.values();
 	}
 
-	public PersonResource get(int id) throws PersonNotFound {
-		if (!persons.containsKey(id)) {
-			throw new PersonNotFound(id);
-		}
+	public PersonResource get(String id) {
 		return persons.get(id);
 	}
 
 	public PersonResource create(PersonResource person) {
-		Integer id = null;
-		person.setId(id);
-		return person;
-	}
-
-	public PersonResource update(int id, PersonResource person) throws PersonNotFound {
-		if (!persons.containsKey(id)) {
-			throw new PersonNotFound(id);
-		}
+		String id = UUID.randomUUID().toString();
 		person.setId(id);
 		persons.put(id, person);
 		return person;
 	}
 
-	public void delete(int id) throws PersonNotFound {
-		if (!persons.containsKey(id)) {
-			throw new PersonNotFound(id);
+	public PersonResource update(String id, PersonResource person) {
+		if (persons.containsKey(id)) {
+			person.setId(id);
+			persons.put(id, person);
+			return person;
 		}
+		return null;
+	}
+
+	public void delete(String id) {
 		persons.remove(id);
 	}
 
