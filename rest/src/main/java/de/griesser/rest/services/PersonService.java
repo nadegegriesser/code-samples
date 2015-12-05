@@ -18,28 +18,28 @@ import de.griesser.rest.resources.PersonResource;
 @Path("/persons")
 public interface PersonService {
 
-	@GET
-	@Produces(APPLICATION_JSON)
-	Collection<PersonResource> getAll();
+    @GET
+    @Produces(APPLICATION_JSON)
+    Collection<PersonResource> getAll();
 
-	@GET
-	@Path("/{id}")
-	@Produces(APPLICATION_JSON)
-	PersonResource get(@PathParam(value = "id") String id);
+    @GET
+    @Path("/{id}")
+    @Produces(APPLICATION_JSON)
+    PersonResource get(@PathParam(value = "id") String id);
 
-	@POST
-	@Consumes(APPLICATION_JSON)
-	@Produces(APPLICATION_JSON)
-	PersonResource create(PersonResource person);
+    @POST
+    @Consumes(APPLICATION_JSON)
+    @Produces(APPLICATION_JSON)
+    PersonResource create(PersonResource person);
 
-	@PUT
-	@Path("/{id}")
-	@Consumes(APPLICATION_JSON)
-	@Produces(APPLICATION_JSON)
-	PersonResource update(@PathParam(value = "id") String id, PersonResource person);
+    @PUT
+    @Path("/{id}")
+    @Consumes(APPLICATION_JSON)
+    @Produces(APPLICATION_JSON)
+    PersonResource update(@PathParam(value = "id") String id, PersonResource person);
 
-	@DELETE
-	@Path("/{id}")
-	void delete(@PathParam(value = "id") String id);
+    @DELETE
+    @Path("/{id}")
+    void delete(@PathParam(value = "id") String id);
 
 }
