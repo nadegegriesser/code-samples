@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
+import de.griesser.rest.exceptions.PersonNotFound;
 import de.griesser.rest.resources.PersonResource;
 
 public class PersonServiceImpl implements PersonService {
@@ -19,8 +20,12 @@ public class PersonServiceImpl implements PersonService {
         return persons.values();
     }
 
-    public PersonResource get(String id) {
-        return persons.get(id);
+    public PersonResource get(String id) throws PersonNotFound {
+        PersonResource res = persons.get(id);
+        if (res == null) {
+            throw new PersonNotFound(id);
+        }
+        return res;
     }
 
     public PersonResource create(PersonResource person) {
@@ -30,13 +35,13 @@ public class PersonServiceImpl implements PersonService {
         return person;
     }
 
-    public PersonResource update(String id, PersonResource person) {
-        if (persons.containsKey(id)) {
-            person.setId(id);
-            persons.put(id, person);
-            return person;
+    public PersonResource update(String id, PersonResource person) throws PersonNotFound {
+        if (!persons.containsKey(id)) {
+            throw new PersonNotFound(id);
         }
-        return null;
+        person.setId(id);
+        persons.put(id, person);
+        return person;
     }
 
     public void delete(String id) {

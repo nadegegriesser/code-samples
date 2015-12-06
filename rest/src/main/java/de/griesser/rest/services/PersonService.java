@@ -13,6 +13,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 
+import de.griesser.rest.exceptions.PersonNotFound;
 import de.griesser.rest.resources.PersonResource;
 
 @Path("/persons")
@@ -25,7 +26,7 @@ public interface PersonService {
     @GET
     @Path("/{id}")
     @Produces(APPLICATION_JSON)
-    PersonResource get(@PathParam(value = "id") String id);
+    PersonResource get(@PathParam(value = "id") String id) throws PersonNotFound;
 
     @POST
     @Consumes(APPLICATION_JSON)
@@ -36,7 +37,7 @@ public interface PersonService {
     @Path("/{id}")
     @Consumes(APPLICATION_JSON)
     @Produces(APPLICATION_JSON)
-    PersonResource update(@PathParam(value = "id") String id, PersonResource person);
+    PersonResource update(@PathParam(value = "id") String id, PersonResource person) throws PersonNotFound;
 
     @DELETE
     @Path("/{id}")

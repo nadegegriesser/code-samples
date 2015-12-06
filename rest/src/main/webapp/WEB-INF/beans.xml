@@ -11,6 +11,7 @@
         </jaxrs:serviceBeans>
         <jaxrs:providers>
             <bean class="org.codehaus.jackson.jaxrs.JacksonJaxbJsonProvider" />
+            <bean class="de.griesser.rest.exceptions.PersonNotFoundExceptionMapper" />
         </jaxrs:providers>
     </jaxrs:server>
 
