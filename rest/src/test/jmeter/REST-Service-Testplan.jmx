@@ -181,7 +181,7 @@
             <intProp name="Assertion.test_type">8</intProp>
           </ResponseAssertion>
           <hashTree/>
-          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Body = []" enabled="true">
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Body = {...}" enabled="true">
             <collectionProp name="Asserion.test_strings">
               <stringProp name="-1953708896">{&quot;id&quot;:&quot;[0-9a-f\-]*&quot;,&quot;lastName&quot;:&quot;Griesser&quot;,&quot;firstName&quot;:&quot;Nadege&quot;}</stringProp>
             </collectionProp>
