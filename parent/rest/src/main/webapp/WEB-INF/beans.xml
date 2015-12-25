@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jaxrs="http://cxf.apache.org/jaxrs"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xsi:schemaLocation="
+         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+         http://cxf.apache.org/jaxrs http://cxf.apache.org/schemas/jaxrs.xsd
+         http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <import resource="classpath:persistence.xml" />
+    
+    <aop:aspectj-autoproxy />
+
+    <jaxrs:server address="/rest">
+        <jaxrs:serviceBeans>
+            <ref bean="personService" />
+        </jaxrs:serviceBeans>
+        <jaxrs:providers>
+            <bean class="org.codehaus.jackson.jaxrs.JacksonJaxbJsonProvider" />
+            <bean class="de.griesser.rest.exceptions.PersonNotFoundExceptionMapper" />
+            <bean class="de.griesser.rest.exceptions.NumberFormatExceptionMapper" />
+        </jaxrs:providers>
+    </jaxrs:server>
+
+    <bean id="personService" class="de.griesser.rest.services.PersonServiceImpl" />
+
+    <bean class="de.griesser.rest.logging.LoggingAspect" />
+
+</beans>
