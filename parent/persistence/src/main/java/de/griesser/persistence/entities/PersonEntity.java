@@ -49,4 +49,9 @@ public class PersonEntity implements Serializable {
         this.firstName = firstName;
     }
 
+    @Override
+    public String toString() {
+        return "PersonEntity [id=" + id + ", lastName=" + lastName + ", firstName=" + firstName + "]";
+    }
+
 }
