@@ -14,6 +14,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 
 import de.griesser.rest.exceptions.PersonNotFound;
+import de.griesser.rest.filters.StatusCode;
 import de.griesser.rest.resources.PersonResource;
 
 @Path("/persons")
@@ -31,6 +32,7 @@ public interface PersonService {
     @POST
     @Consumes(APPLICATION_JSON)
     @Produces(APPLICATION_JSON)
+    @StatusCode
     PersonResource create(PersonResource person);
 
     @PUT

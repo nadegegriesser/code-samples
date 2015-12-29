@@ -19,6 +19,7 @@
             <bean class="org.codehaus.jackson.jaxrs.JacksonJaxbJsonProvider" />
             <bean class="de.griesser.rest.exceptions.PersonNotFoundExceptionMapper" />
             <bean class="de.griesser.rest.exceptions.NumberFormatExceptionMapper" />
+            <bean class="de.griesser.rest.filters.StatusCodeFilter" />
         </jaxrs:providers>
     </jaxrs:server>
 
